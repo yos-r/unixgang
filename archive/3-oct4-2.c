@@ -53,11 +53,9 @@ int main()
         close(p[1]);              // Fermer l'extrémité d'écriture du premier pipe
         dup2(p[0], STDIN_FILENO); // Rediriger l'entrée standard vers l'extrémité de lecture du premier pipe
         close(p[0]);              // Fermer l'extrémité de lecture du premier pipe
-
         close(p1[0]);               // Fermer l'extrémité de lecture du deuxième pipe
         dup2(p1[1], STDOUT_FILENO); // Rediriger la sortie standard vers l'extrémité d'écriture du deuxième pipe
         close(p1[1]);               // Fermer l'extrémité d'écriture du deuxième pipe
-
         execlp("grep", "grep", "root", NULL); // Exécute `grep root`
         perror("execlp failed");              // Si execlp échoue
         exit(1);
